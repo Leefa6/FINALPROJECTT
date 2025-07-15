@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{# Sets the page title in the browser tab #}
+{% block title %}Cart - Clothing Store{% endblock %}
+
+{# Main content area for the cart page #}
+{% block main %}
+<main class="flex-grow-1 container py-5">
+  <div class="hero-title mb-2">Your Cart</div>
+  <div class="hero-subtitle mb-4">Review your selected items before checkout.</div>
+  {% if cart_items %}
+    <div class="card shadow-lg mb-4" style="background-color: rgba(255,255,255,0.95); border-radius: 16px;">
+      <div class="card-body p-4">
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in cart_items %}
+              <tr>
+                <td style="width: 90px;">
+                  <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="height: 70px; width: 70px; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 8px rgba(161,180,209,0.10);" onerror="this.src='https://via.placeholder.com/70x70?text=No+Image';">
+                </td>
+                <td>
+                  <a href="{% url 'product_detail' item.product.slug %}" class="fw-bold text-decoration-none">{{ item.product.name }}</a>
+                </td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.subtotal }}</td>
+                <td>
+                  <a href="{% url 'remove_from_cart' item.product.slug %}" class="btn btn-danger btn-sm">Remove</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <h4 class="mb-0">Total: ${{ total }}</h4>
+          <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">Proceed to Checkout</a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="alert alert-info shadow-sm">Your cart is empty.</div>
+  {% endif %}
+</main>
+{% endblock %} 

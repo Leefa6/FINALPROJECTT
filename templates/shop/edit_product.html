@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block title %}Edit Product - Clothing Store{% endblock %}
+{% block main %}
+<main class="container py-5">
+  <div class="hero-title mb-3">Edit Product</div>
+  <div class="card shadow-lg p-4">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary mt-2">Save Changes</button>
+      <a href="{% url 'product_detail' product.slug %}" class="btn btn-secondary mt-2 ms-2">Cancel</a>
+    </form>
+  </div>
+</main>
+{% endblock %} 

@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home - Clothing Store{% endblock %}
+
+{% block main %}
+<!-- Hero Welcome Section -->
+<div class="hero mb-5">
+  <div class="hero-title">Welcome to HighApparel!</div>
+  <div class="hero-subtitle">Discover our latest collection and find your perfect style.</div>
+  <a href="/shop/" class="btn btn-lg btn-primary mt-4 shadow">Start Shopping</a>
+</div>
+
+<!-- Bootstrap Carousel for Latest Products -->
+{% if latest_products %}
+<div id="promoCarousel" class="carousel slide mb-5 bg-black rounded" data-bs-ride="carousel" aria-label="Product Carousel">
+  <div class="carousel-inner rounded shadow">
+    {% for product in latest_products %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <img src="{{ product.image.url }}" class="d-block w-100 bg-white" alt="{{ product.name }}" style="height: 300px; object-fit: contain;">
+      <div class="carousel-caption ">
+        <a href="{% url 'product_detail' product.slug %}" class="btn btn-dark btn-sm mt-2">View Product</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev" aria-label="Previous Slide">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next" aria-label="Next Slide">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% endif %}
+
+<!-- Latest Products Section -->
+{% if latest_products %}
+<section aria-label="Latest Products">
+  <h2 class="mb-4 text-center">Latest Products</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in latest_products %}
+    <div class="col">
+      <div class="card h-100 shadow-sm" style="max-width: 260px; margin: 0 auto;">
+        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 140px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <a href="{% url 'product_detail' product.slug %}" class="btn btn-outline-primary btn-sm">View Details</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

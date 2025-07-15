@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+
+{# Sets the page title in the browser tab #}
+{% block title %}Dashboard - Clothing Store{% endblock %}
+
+{# Main content area for the dashboard page #}
+{% block main %}
+<main class="container py-5">
+  <!-- Dashboard Header -->
+  <div class="mb-4">
+    <h2 class="hero-title">My Dashboard</h2>
+    <p class="hero-subtitle">Manage your account, security, and orders.</p>
+  </div>
+
+  <!-- Bootstrap Nav Tabs for Dashboard Sections -->
+  <ul class="nav nav-tabs mb-4" id="dashboardTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">Security</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button" role="tab" aria-controls="orders" aria-selected="false">Orders</button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="dashboardTabsContent">
+    <!-- Profile Tab -->
+    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="card shadow-sm mb-4" style="background-color: rgba(255,255,255,0.92);">
+        <div class="card-body">
+          <h5 class="card-title">Profile Information</h5>
+          <p><strong>Username:</strong> {{ user.username }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <!-- Add more profile fields as needed -->
+        </div>
+      </div>
+    </div>
+    <!-- Security Tab -->
+    <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+      <div class="card shadow-sm mb-4" style="background-color: rgba(255,255,255,0.92);">
+        <div class="card-body">
+          <h5 class="card-title">Security Settings</h5>
+          <p>Change your password or update security settings here.</p>
+          <a href="{% url 'password_change' %}" class="btn btn-outline-primary">Change Password</a>
+        </div>
+      </div>
+    </div>
+    <!-- Orders Tab -->
+    <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+      <div class="card shadow-sm mb-4" style="background-color: rgba(255,255,255,0.92);">
+        <div class="card-body">
+          <h5 class="card-title">My Orders</h5>
+          <p>Order history and tracking will appear here.</p>
+          <!-- Placeholder for order list -->
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

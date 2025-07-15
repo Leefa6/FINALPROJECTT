@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Product - Clothing Store{% endblock %}
+
+{% block main %}
+<main class="flex-grow-1 container mt-4">
+  <div class="hero-title">Add New Product</div>
+  <div class="hero-subtitle">Staff only: Fill out the form to add a new product to the shop.</div>
+  <form method="post" enctype="multipart/form-data" class="mt-4">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Add Product</button>
+    <a href="{% url 'shop' %}" class="btn btn-link ms-2">Back to Shop</a>
+  </form>
+</main>
+{% endblock %} 

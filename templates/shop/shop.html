@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{# Sets the page title in the browser tab #}
+{% block title %}Shop - Clothing Store{% endblock %}
+
+{# Main content area for the shop page #}
+{% block main %}
+<main class="flex-grow-1 container mt-4">
+  {% if user.is_staff %}
+    <div class="mb-4 text-end">
+      <a href="{% url 'add_product' %}" class="btn btn-success">+ Add Product</a>
+    </div>
+  {% endif %}
+  <div class="row">
+    {# Sidebar: shows all categories for filtering #}
+    <aside class="col-md-3 mb-4">
+      <h5>Categories</h5>
+      <ul class="list-group">
+        <li class="list-group-item {% if not selected_category %}active{% endif %}">
+          <a href="/shop/" class="text-decoration-none {% if not selected_category %}text-white{% endif %}">All</a>
+        </li>
+        {% for category in categories %}
+        <li class="list-group-item {% if selected_category and category.slug == selected_category.slug %}active{% endif %}">
+          <a href="/shop/?category={{ category.slug }}" class="text-decoration-none {% if selected_category and category.slug == selected_category.slug %}text-white{% endif %}">{{ category.name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </aside>
+    {# Main product grid: shows all products as Bootstrap cards #}
+    <section class="col-md-9">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for product in products %}
+        <div class="col d-flex justify-content-center align-items-stretch">
+          <div class="card h-100 shadow-lg" style="background-color: rgba(255, 255, 255, 0.85); border-radius: 10px; width: 22rem; min-height: 32rem; padding: 1.2rem;">
+            {# Product image: shows uploaded image or a placeholder if missing/broken #}
+            <img src="{{ product.image.url }}"
+                 alt="{{ product.name }}"
+                 style="height: 300px; object-fit: cover; width: 100%; border-radius: 8px;"
+                 onerror="this.src='https://via.placeholder.com/300x200?text=No+Image';">
+            <div class="card-body d-flex flex-column">
+              {# Product name #}
+              <h5 class="card-title">{{ product.name }}</h5>
+              {# Product price as a badge #}
+              <span class="badge bg-primary mb-2" style="font-size: 1rem;">${{ product.price }}</span>
+              {# Link to the product detail page #}
+              <a href="{% url 'product_detail' product.slug %}" class="btn btn-primary mt-auto">View Details</a>
+              {# Add to Cart form: only show if user is authenticated #}
+              <form method="POST" action="{% url 'add_to_cart' product.slug %}" class="add-to-cart-form"> 
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-primary mt-2">Add to Cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="col">
+          <p>No products found.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %} 
