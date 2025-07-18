@@ -1,10 +1,11 @@
 # shop/urls.py
 # This file maps URL patterns to view functions in the shop app.
-# Each path() connects a URL route to a view, so Django knows what code to run for each page.
-
+# Import Django's path function to define URL patterns
 from django.urls import path
+# Import views from the current package
 from . import views
 
+# List of URL patterns for the shop app
 urlpatterns = [
     # Home page
     path('', views.home, name='home'),
