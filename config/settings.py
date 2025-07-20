@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-83&6i!2-q%*q74e%krp(nnt+60+1@ayv=pj4mu_e)6(tbahf(4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['leefa6.pythonanywhere.com']
 
 # Application definition
 
@@ -123,3 +123,8 @@ STATICFILES_DIRS = [BASE_DIR / 'static']  # Where to look for static files (CSS,
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login/'
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
