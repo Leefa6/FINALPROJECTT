@@ -114,8 +114,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'  # URL to access static files in templates
+STATIC_URL = '/static/'  # URL to access static files in templates
 STATICFILES_DIRS = [BASE_DIR / 'static']  # Where to look for static files (CSS, JS, images)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
