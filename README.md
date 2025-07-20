@@ -70,5 +70,5 @@ pip install -r requirements.txt
 - Uses crispy_forms for Bootstrap 5 form styling
 - Uses pillow for image uploads
 - Easly understandable and notes are kept, so feel free to modify and update/upgrade the site based on your liking.
-- Youtube video for demonstration: https://youtu.be/b6o-1dGYQxg
+- Youtube video for demonstration: https://youtu.be/b6o-1dGYQxg OR  https://www.youtube.com/watch?v=b6o-1dGYQxg
 - Website link: https://leefa6.pythonanywhere.com
