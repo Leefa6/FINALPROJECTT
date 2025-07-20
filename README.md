@@ -1,6 +1,13 @@
-# Django Clothing Store
+# HighApparel
 
-A simple, student-friendly Django web app for an online clothing store. Features product browsing, cart, reviews, authentication, and admin product management.
+WebApp - CLothing ecommerce store for final project
+
+Laith Abubaker
+ITC - 4214
+HighApparel
+
+admin
+admin12321
 
 ## Features
 - Product catalog with categories
@@ -58,11 +65,9 @@ pip install -r requirements.txt
 - `config/` - Project settings and URLs
 
 ## Notes
-- Uses session for cart (no database cart model)
+- Sessions is used for the carts
 - Uses crispy_forms for Bootstrap 5 form styling
 - Uses pillow for image uploads
-- All logic is beginner-friendly and commented for learning
-
----
-
-Feel free to fork, modify, and use for your coursework or demos! 
+- Easly understandable and notes are kept, so feel free to modify and update/upgrade the site based on your liking.
+- Youtube video for demonstration: https://youtu.be/b6o-1dGYQxg
+- Website link: https://leefa6.pythonanywhere.com
