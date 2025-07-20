@@ -36,7 +36,7 @@ pip install -r requirements.txt
 ## Setup & Usage
 1. **Clone the repo:**
    ```bash
-   git clone <your-repo-url>
+   git clone "https://github.com/Leefa6/FINALPROJECTT"
    cd clothing_store2
    ```
 2. **Install dependencies:**
