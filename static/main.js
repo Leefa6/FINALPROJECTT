@@ -16,7 +16,37 @@ document.addEventListener('DOMContentLoaded', function() {
       if (data.success) {
         // Update cart count in navbar
         const badge = document.querySelector('.navbar .badge.bg-danger');
-        if (badge) badge.textContent = data.cart_count;
+        if (badge) {
+          badge.textContent = data.cart_count;
+          badge.style.display = '';
+        } else {
+          // If badge doesn't exist, create it
+          const cartLink = document.querySelector('#cartDropdown');
+          if (cartLink) {
+            const newBadge = document.createElement('span');
+            newBadge.className = 'badge bg-danger';
+            newBadge.textContent = data.cart_count;
+            cartLink.appendChild(newBadge);
+          }
+        }
+        // Update quantity in cart dropdown if present
+        const productName = form.closest('.card')?.querySelector('.card-title')?.textContent?.trim();
+        if (productName) {
+          document.querySelectorAll('.dropdown-menu[aria-labelledby="cartDropdown"] .d-flex.align-items-center.mb-2').forEach(function(item) {
+            const nameLink = item.querySelector('a.text-decoration-none');
+            if (nameLink && nameLink.textContent.trim() === productName) {
+              // Find the quantity div and update it
+              const qtyDiv = item.querySelector('.small.text-muted');
+              if (qtyDiv) {
+                // Extract the number and increment
+                const match = qtyDiv.textContent.match(/Qty: (\d+)/);
+                if (match) {
+                  qtyDiv.textContent = 'Qty: ' + (parseInt(match[1]) + 1);
+                }
+              }
+            }
+          });
+        }
         // Show a temporary success message
         let msg = document.createElement('div');
         msg.className = 'alert alert-success position-fixed top-0 start-50 translate-middle-x mt-3 shadow';

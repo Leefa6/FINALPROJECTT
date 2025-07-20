@@ -12,11 +12,11 @@
 
 <!-- Bootstrap Carousel for Latest Products -->
 {% if latest_products %}
-<div id="promoCarousel" class="carousel slide mb-5 bg-black rounded" data-bs-ride="carousel" aria-label="Product Carousel">
-  <div class="carousel-inner rounded shadow">
+<div id="promoCarousel" class="carousel slide mb-5 bg-black rounded" data-bs-ride="carousel" aria-label="Product Carousel" style="max-width: 900px; margin: 0 auto;">
+  <div class="carousel-inner rounded shadow" style="min-height: 480px;">
     {% for product in latest_products %}
     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-      <img src="{{ product.image.url }}" class="d-block w-100 bg-white" alt="{{ product.name }}" style="height: 300px; object-fit: contain;">
+      <img src="{{ product.image.url }}" class="d-block w-100 bg-white" alt="{{ product.name }}" style="height: 440px; object-fit: contain;">
       <div class="carousel-caption ">
         <a href="{% url 'product_detail' product.slug %}" class="btn btn-dark btn-sm mt-2">View Product</a>
       </div>

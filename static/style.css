@@ -184,8 +184,9 @@ body, .d-flex.flex-column.min-vh-100 {
   color: #fff;
 }
 
-.dropdown-menu[aria-labelledby='cartDropdown'] {
-  z-index: 5000 !important;
+/* Ensure the cart dropdown always appears above all content */
+.navbar .dropdown-menu[aria-labelledby='cartDropdown'] {
+  z-index: 9999 !important;
   position: fixed !important;
   right: 1rem;
   top: 4rem;

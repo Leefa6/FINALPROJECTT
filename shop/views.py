@@ -289,7 +289,9 @@ def add_product(request):
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            product = form.save(commit=False)
+            product.created_by = request.user
+            product.save()
             messages.success(request, "Product added successfully.")
             return redirect('shop')
     else:

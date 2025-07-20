@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-83&6i!2-q%*q74e%krp(nnt+60+1@ayv=pj4mu_e)6(tbahf(4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['leefa6.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Where to look for template files
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Where to look for template files
         'APP_DIRS': True,  # Also look for templates in each app's 'templates' folder
         'OPTIONS': {
             'context_processors': [
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
