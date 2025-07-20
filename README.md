@@ -1,5 +1,6 @@
 # HighApparel
 
+(((quick note:: ignore the /testproj/ file, it was made for testing reasons and you dont have to bother by it)))
 WebApp - CLothing ecommerce store for final project
 
 Laith Abubaker
